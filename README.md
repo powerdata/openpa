@@ -1,4 +1,4 @@
-<p><img src=http://incsys.com/images/IncSys_Logo_web.png></p>
+<p><a href="http://incsys.com"><img src=http://incsys.com/images/IncSys_Logo_web.png></a></p>
 Open Source Power Applications and Utilities.
 
 ## Notes on Cloning
