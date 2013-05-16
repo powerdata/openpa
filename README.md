@@ -3,7 +3,7 @@ Open Source Power Applications and Utilities.
 
 ## Notes on Cloning
 
-This project contains the submodule project powerdata/com.powerdata.openpa.
+This project contains the submodule project <a href="https://github.com/powerdata/com.powerdata.openpa">powerdata/com.powerdata.openpa</a>.
 
 To clone this project with the submodules first clone this project as normal, then inside the working directory run:
 
