@@ -1,3 +1,4 @@
 [submodule "src/com/powerdata/openpa"]
 	path = src/com/powerdata/openpa
 	url = https://github.com/powerdata/com.powerdata.openpa.git
+	branch = master
