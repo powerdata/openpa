@@ -71,8 +71,8 @@ public class Active1TData
 		for(int i=0; i < n; ++i)
 		{
 			int b = _bus[i];
-			p[b] += PAMath.mva2pu(lp[i], _sbase);
-			q[b] += PAMath.mva2pu(lq[i], _sbase);
+			p[b] -= PAMath.mva2pu(lp[i], _sbase);
+			q[b] -= PAMath.mva2pu(lq[i], _sbase);
 		}
 	}
 }

@@ -1,6 +1,13 @@
 package com.powerdata.openpa.pwrflow;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import com.powerdata.openpa.ACBranchList;
+import com.powerdata.openpa.BusRefIndex;
+import com.powerdata.openpa.PAModel;
 import com.powerdata.openpa.PAModelException;
+import com.powerdata.openpa.SubLists;
 import com.powerdata.openpa.pwrflow.ACBranchExtList.ACBranchExt;
 
 public interface ACBranchFlows extends 
@@ -54,5 +61,15 @@ public interface ACBranchFlows extends
 	 * @throws PAModelException
 	 */
 	void update(int ndx) throws PAModelException;
+	
+	static List<ACBranchFlows> createFromModel(PAModel m, BusRefIndex bri) throws PAModelException
+	{
+		List<ACBranchList> brlists = m.getACBranches(); 
+		List<ACBranchFlows> rv = new ArrayList<>(brlists.size());
+		for(ACBranchList list : brlists)
+			rv.add(new ACBranchFlowsI(list, bri));
+		
+		return rv;
+	}
 	
 }

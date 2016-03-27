@@ -340,9 +340,9 @@ public class FDPowerFlow
 			for(int i=0; i < ngen; ++i)
 			{
 				int b = bx[i];
-				p[b] += pg[i];
+				p[b] -= pg[i];
 				if(!inavr[i]) 
-					q[b] += qg[i];
+					q[b] -= qg[i];
 			}
 		}
 	}
@@ -462,7 +462,7 @@ public class FDPowerFlow
 			/* test for convergence */
 			incomplete = !rv.test();
 			/* distribute slack */
-			_dsmon.monitor(pmm.get(), rv);
+//			_dsmon.monitor(pmm.get(), rv);
 			
 			/* solve a new set of voltages and angles */
 			if (incomplete)
@@ -512,7 +512,7 @@ public class FDPowerFlow
 			m[bus] /= vm[bus];
 		float[] c = b.solve(m);
 		for(int bus : b.getElimBus())
-			state[bus] += c[bus];
+			state[bus] -= c[bus];
 	}
 
 	/**
@@ -523,7 +523,8 @@ public class FDPowerFlow
 	 * @param va Solved voltage angles (parallel with _buses)
 	 * @throws PAModelException 
 	 */
-	void applyMismatches(Mismatch pmm, Mismatch qmm, float[] vm, float[] va) throws PAModelException
+	void applyMismatches(Mismatch pmm, Mismatch qmm, 
+		float[] vm, float[] va) throws PAModelException
 	{
 		pmm.reset();
 		qmm.reset();
@@ -672,11 +673,12 @@ public class FDPowerFlow
 		final File outdir = poutdir;
 		if (!outdir.exists()) outdir.mkdirs();
 		PflowModelBuilder bldr = PflowModelBuilder.Create(uri);
-		bldr.enableFlatVoltage(true);
+		bldr.enableFlatVoltage(false);
 		bldr.setLeastX(0.0001f);
 		bldr.setUnitRegOverride(false);
-//		bldr.enableRCorrection(true);
+		bldr.enableRCorrection(true);
 		PAModel m = bldr.load();
+		
 
 		FDPowerFlow pf = new FDPowerFlow(m, BusRefIndex.CreateFromSingleBuses(m));
 //		pf.addMismatchReporter(new DetailMismatchReporter(m, outdir, false));
@@ -686,9 +688,6 @@ public class FDPowerFlow
 		ConvergenceList results = pf.runPF();
 		pf.updateResults();
 		results.forEach(l -> System.out.println(l));
-		
-		PsmFmtExport exp = new PsmFmtExport(m, false);
-		exp.export(new File("/tmp/ieee24"));
 		
 	}
 

@@ -78,6 +78,7 @@ public class CloneModelBuilder extends ModelBuilderI
 		_col.put(ColumnMeta.GenAVR, () -> _srcmdl.getGenerators().isRegKV());
 		_col.put(ColumnMeta.GenVS, () -> _srcmdl.getGenerators().getVS());
 		_col.put(ColumnMeta.GenREGBUS, () -> extractIndex(_srcmdl.getGenerators().getRegBus()));
+//		_col.put(ColumnMeta.GenRAMP, () -> _srcmdl.getGenerators().getra)
 	
 		_col.put(ColumnMeta.LoadID, () -> _srcmdl.getLoads().getID());
 		_col.put(ColumnMeta.LoadNAME, () -> _srcmdl.getLoads().getName());
@@ -400,5 +401,11 @@ public class CloneModelBuilder extends ModelBuilderI
 			r = v;
 		}
 		return r;
+	}
+
+	@Override
+	protected SteamTurbineList loadSteamTurbines() throws PAModelException
+	{
+		throw new PAModelException("Not yet implemented");
 	}
 }

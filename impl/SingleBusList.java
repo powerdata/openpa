@@ -69,14 +69,14 @@ public class SingleBusList extends GroupListI<Bus> implements BusList
 	@Override
 	public String getName(int ndx) throws PAModelException
 	{
-		if(_name.rw == null) createNames();
+		if(_name == null) createNames();
 		return super.getName(ndx);
 	}
 
 	@Override
 	public String getID(int ndx) throws PAModelException
 	{
-		if(_name.rw == null) createNames();
+		if(_name == null) createNames();
 		return super.getID(ndx);
 	}
 
@@ -147,7 +147,7 @@ public class SingleBusList extends GroupListI<Bus> implements BusList
 	@Override
 	public String[] getName() throws PAModelException
 	{
-		if(_name.rw == null) createNames();
+		if(_name == null) createNames();
 		return super.getName();
 	}
 

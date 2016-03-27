@@ -15,7 +15,7 @@ public interface JacobianList extends List<JacobianElement>
 		int _ndx;
 		JacobianList _list;
 		
-		Element(JacobianList l, int ndx) {_ndx = ndx; _list=l;}
+		public Element(JacobianList l, int ndx) {_ndx = ndx; _list=l;}
 		@Override
 		public float getDpda() {return _list.getDpda(_ndx);}
 		@Override

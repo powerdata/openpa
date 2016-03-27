@@ -277,6 +277,7 @@ public class ACPowerCalc
 		PflowModelBuilder bldr = PflowModelBuilder.Create(uri);
 		bldr.setLeastX(0.0001f);
 		bldr.enableFlatVoltage(false);
+		bldr.enableRCorrection(false);
 		PAModel m = bldr.load();
 		float sbase = 100f;
 
