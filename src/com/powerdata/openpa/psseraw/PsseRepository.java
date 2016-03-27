@@ -200,7 +200,7 @@ public class PsseRepository
 	
 	public void mapBusInfo(String id, String name, float baskv, String ownid, String areaid)
 	{
-		_busInfo.put(id, new BusInfo(id, name, baskv, ownid, areaid));
+		_busInfo.put(id, new BusInfo(id, name, baskv, areaid, ownid));
 	}
 	
 	public String getBusName(String id)

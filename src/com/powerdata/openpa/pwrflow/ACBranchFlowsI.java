@@ -92,10 +92,10 @@ public class ACBranchFlowsI extends ACBranchExtListI<ACBranchFlow> implements AC
 			float gsin = stvmpq * yg;
 			float bsin = stvmpq * yb;
 			float ybmag = yb + _brbmag[i];
-			_fp[i] = gcos + bsin - tvmp2 * yg;
-			_fq[i] = gsin - bcos + tvmp2 * (ybmag + _fbch[i]);
-			_tp[i] = gcos - bsin - tvmq2 * yg;
-			_tq[i] = -gsin - bcos + tvmq2 * (ybmag + _tbch[i]);
+			_fp[i] = -gcos - bsin + tvmp2 * yg;
+			_fq[i] = -gsin + bcos - tvmp2 * (ybmag + _fbch[i]);
+			_tp[i] = -gcos + bsin + tvmq2 * yg;
+			_tq[i] = gsin + bcos - tvmq2 * (ybmag + _tbch[i]);
 		}
 	}
 	

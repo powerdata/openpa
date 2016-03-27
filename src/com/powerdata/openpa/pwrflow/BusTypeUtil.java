@@ -57,16 +57,23 @@ public class BusTypeUtil
 			if (s.getSlope() == 0f && s.isInService())
 				sx[npv++] = s.getIndex();
 		}
-		setup(bri, SubLists.getSVCSublist(svcs, sx));
+		setup(bri, SubLists.getSVCSublist(svcs, sx), null);
 	}
 	
 	public BusTypeUtil(PAModel model, BusRefIndex bri, SVCList pvsvc) throws PAModelException
 	{
 		_model = model;
-		setup(bri, pvsvc);
+		setup(bri, pvsvc, null);
 	}
 	
-	void setup(BusRefIndex bri, SVCList svcpv) throws PAModelException
+	public BusTypeUtil(PAModel model, BusRefIndex bri, SVCList pvsvc, Bus...ref) throws PAModelException
+	{
+		_model = model;
+		setup(bri, pvsvc, ref);
+		
+	}
+	
+	void setup(BusRefIndex bri, SVCList svcpv, Bus[] ref) throws PAModelException
 	{
 		BusList buses = bri.getBuses();
 		int nbus = buses.size();
@@ -137,7 +144,21 @@ public class BusTypeUtil
 		{
 			if (i.isEnergized()) configureTypes(i, bri, pmax, qmax, svcpv);
 		}
-		findWidestPaths(glist, buses, islands, pmax, qmax);
+		
+		/* if reference buses not specified, then choose one for each island */
+		if(ref != null)
+		{
+			for(Bus b : ref)
+			{
+				int bx = b.getIndex();
+				_type[bx] = REF;
+				_itype[bx] = calcigrp(islands.getByBus(b.getBuses().get(0)).getIndex(), REF);
+			}
+		}
+		else
+		{
+			findWidestPaths(glist, buses, islands, pmax, qmax);
+		}
 	}
 	
 	private static class Score
@@ -284,7 +305,7 @@ public class BusTypeUtil
 		return ysum.abs();
 	}
 
-	int[] getBuses(BusType type)
+	public int[] getBuses(BusType type)
 	{
 		GroupMap m = _tmap.get();
 		if (m == null)
@@ -293,6 +314,17 @@ public class BusTypeUtil
 			_tmap = new WeakReference<>(m);
 		}
 		return m.get(type.ordinal());
+	}
+	
+	public int[] getBusesForComplement(BusType type)
+	{
+		GroupMap m = _tmap.get();
+		if (m == null)
+		{
+			m = new GroupMap(_type, NGRP);
+			_tmap = new WeakReference<>(m);
+		}
+		return m.getComplement(type.ordinal());
 	}
 	
 	int[] getBuses(BusType type, ElectricalIsland island)

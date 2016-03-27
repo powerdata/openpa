@@ -394,13 +394,13 @@ public class PFlowPsmModelBldr extends PflowModelBuilder
 			int[] treg;
 			if(sregnd == null)
 			{
-				freg = _busrb.revndx(sregnd, _from.tapx);
-				treg = _busrb.revndx(sregnd, _to.tapx);
+				freg = new int[0];
+				treg = freg;
 			}
 			else
 			{
-				freg = new int[0];
-				treg = freg;
+				freg = _busrb.revndx(sregnd, _from.tapx);
+				treg = _busrb.revndx(sregnd, _to.tapx);
 			}
 			int[] ftn = _busrb.revndx(stapnd, _from.tapx);
 			int[] ttn = _busrb.revndx(stapnd, _to.tapx);

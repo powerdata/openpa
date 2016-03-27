@@ -7,6 +7,12 @@ package com.powerdata.openpa.tools.matrix;
  */
 public interface FloatMatrix
 {
+	@FunctionalInterface
+	interface RowFunction
+	{
+		float apply(int column, float value);
+	}
+	
 	/** 
 	 * Return the number of rows in the matrix.
 	 * @return Number of matrix rows
@@ -65,6 +71,13 @@ public interface FloatMatrix
 	default void divValue(int row, int column, float value)
 	{
 		multValue(row, column, 1f/value);
+	}
+	
+	default void iterateRow(int row, RowFunction rfunc)
+	{
+		int ncol = getColumnCount();
+		for(int i=0; i < ncol; ++i)
+			setValue(row, i, rfunc.apply(i, getValue(row, i)));
 	}
 	
 	static public Matrix<Float> wrap(FloatMatrix m)

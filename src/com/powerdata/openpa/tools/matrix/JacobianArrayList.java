@@ -105,10 +105,10 @@ public class JacobianArrayList extends AbstractList<JacobianElement>
 	@Override
 	public void dec(int index, JacobianElement e)
 	{
-		_dpda[index] += e.getDpda();
-		_dpdv[index] += e.getDpdv();
-		_dqda[index] += e.getDqda();
-		_dqdv[index] += e.getDqdv();
+		_dpda[index] -= e.getDpda();
+		_dpdv[index] -= e.getDpdv();
+		_dqda[index] -= e.getDqda();
+		_dqdv[index] -= e.getDqdv();
 	}
 	
 }

@@ -226,8 +226,8 @@ public class ConvergenceList extends AbstractList<com.powerdata.openpa.pwrflow.C
 						_status[i] = Status.Qmismatch;
 					else if (Math.abs(p.getValue()) > _ptol)
 						_status[i] = Status.Pmismatch;
-					else if (Math.abs(_pmm.get(_btu.getBuses(BusType.Reference, island)[0])) > _ptol)
-						_status[i] = Status.SlackDist;
+//					else if (Math.abs(_pmm.get(_btu.getBuses(BusType.Reference, island)[0])) > _ptol)
+//						_status[i] = Status.SlackDist;
 					else
 						_status[i] = Status.Converge;
 					

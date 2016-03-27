@@ -148,8 +148,8 @@ public class DetailMismatchReporter implements MismatchReporter
 			for (OneTermDev dev : devlist)
 			{
 				_pw.format("%s\"%s\",\"%s\",%f,%f\n", _pad, dev.getList()
-						.getListMeta().toString(), dev.getName(), dev.getP(),
-					dev.getQ());
+						.getListMeta().toString(), dev.getName(), -dev.getP(),
+					-dev.getQ());
 			}
 		}
 	}

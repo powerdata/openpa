@@ -101,7 +101,7 @@ public class PsseClass
 		
 		// look for comments, remove and re-trim;
 		int ndx = l.indexOf('/');
-		if (ndx != -1 && l.substring(0, ndx).trim().equals("0"))
+		if(((ndx != -1)?l.substring(0, ndx):l).trim().equals("0"))
 			rv = false;
 		return rv;
 	}

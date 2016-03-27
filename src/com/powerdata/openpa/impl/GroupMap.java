@@ -68,6 +68,21 @@ public class GroupMap extends AbstractList<int[]>
 		return rv;
 	}
 	
+	public int[] getComplement(int grpndx)
+	{
+		int[] rv = new int[lstcnt - cnt[grpndx]];
+		int ofs = 0;
+		for(int i=0; i < ngrp; ++i)
+		{
+			if (grpndx != i)
+			{
+				fill(rv, ofs, i);
+				ofs += cnt[i];
+			}
+		}
+		return rv;
+	}
+	
 	protected void fill(int[] rv, int ofs, int grpndx)
 	{
 		int s = start[grpndx];

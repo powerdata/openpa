@@ -80,6 +80,7 @@ public class Psse2CSV extends PsseProcessor
 			showHelp(true);
 		}
 
+		if (!outdir.exists()) outdir.mkdirs();
 		Reader rpsse = new BufferedReader(new FileReader(psse));
 		Psse2CSV p2c = new Psse2CSV(rpsse, sversion, outdir);
 		

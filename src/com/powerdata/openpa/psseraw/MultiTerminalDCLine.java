@@ -9,7 +9,7 @@ import java.io.LineNumberReader;
  * @author chris@powerdata.com
  * 
  */
-public class MultiTerminalDCLine extends PsseClass
+class MultiTerminalDCLine extends PsseClass
 {
 	public MultiTerminalDCLine() {super("MultiTerminalDCLine");}
 

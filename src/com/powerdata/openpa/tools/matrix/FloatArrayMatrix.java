@@ -15,10 +15,7 @@ public class FloatArrayMatrix implements FloatMatrix
 		_m = new float[nrow][ncol];
 	}
 	
-	public FloatArrayMatrix()
-	{
-		
-	}
+	public FloatArrayMatrix() {}
 	
 	public void setSize(int nrow, int ncol)
 	{
