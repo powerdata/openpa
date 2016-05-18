@@ -6,6 +6,8 @@ package com.powerdata.openpa.pwrflow;
  * See full license at https://powerdata.github.io/openpa/LICENSE.md
  */
 
+import java.util.AbstractList;
+
 import com.powerdata.openpa.Bus;
 import com.powerdata.openpa.BusList;
 import com.powerdata.openpa.BusRefIndex;
